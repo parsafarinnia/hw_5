@@ -12,7 +12,7 @@ public class CurrentWeather extends BaseWeather {
      */
     public static String [] currentweather(String json){
         JSONObject jsonObject = new JSONObject(json);
-        //"coord"fbdd
+        //"coord"
         String coord=null;
         JSONObject jsonObjectCoord = jsonObject.getJSONObject("coord");
         Double resultLon = jsonObjectCoord.getDouble("lon");
