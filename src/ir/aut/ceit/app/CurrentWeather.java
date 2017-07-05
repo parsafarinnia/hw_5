@@ -7,6 +7,9 @@ import org.json.JSONObject;
  * Created by parsa on 4/14/17.
  */
 public class CurrentWeather extends BaseWeather {
+    /**
+     * this method is for getting the city name and city coordinates
+     */
     public static String [] currentweather(String json){
         JSONObject jsonObject = new JSONObject(json);
         //"coord"

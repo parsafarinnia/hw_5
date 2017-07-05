@@ -7,6 +7,9 @@ import org.json.JSONObject;
  */
 public class ForcastWeather extends BaseWeather {
     public static String [] forcast(String jsonin){
+        /**
+         * this method is for getting the city name and city coordinates
+         */
         JSONObject json = new JSONObject(jsonin);
         String [] forcast = new String[2];
         JSONObject jsonObjectCity= json.getJSONObject("city");

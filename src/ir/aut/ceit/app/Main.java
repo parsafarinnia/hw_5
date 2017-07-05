@@ -22,6 +22,11 @@ public class Main {
     public static String ID = null;
     public static String address = null;
 
+    /**
+     * user menu
+     * user inter action and information requests from here
+     * is got from here
+     */
     public static void displayInfo() {
         System.out.println("city or city id?\n for city press of 1 and for cityID press 2");
         Scanner input = new Scanner(System.in);
@@ -45,6 +50,13 @@ public class Main {
 
     }
 
+    /**
+     * this method decides with type of weather information
+     * is needed by the user
+     * so it decides by weatherdeterminzer
+     * @return
+     * it returns the url of requested information
+     */
     private static String getAddress() {
         if (weatherDeterminizer == 1) {
             address = ApiWeather.apiWeatherCurrent(city, ID);
@@ -53,6 +65,12 @@ public class Main {
         }
         return address;
     }
+
+    /**
+     * this method gets the final information from related class and
+     * and displays it as a table of information formated
+     * @param array
+     */
     private static void lastDisplay(String[] array){
         String [] array1 ={"city","humidity","Description","Wind-Info","Coordination"};
         System.out.println("====================================================================");
@@ -69,15 +87,24 @@ public class Main {
         String[] resultArray = new String[5];
         String jsonin = InputFileReader.reading(getAddress());
         if (weatherDeterminizer == 1) {
+            /**
+             * the case of weather determinizer equals 1
+             * that means its  current weather
+             */
             resultArray[0] = CurrentWeather.currentweather(jsonin)[0];
             resultArray[4] = CurrentWeather.currentweather(jsonin)[1];
             resultArray[1] = CurrentWeather.baseWeather(jsonin)[0];
             resultArray[2] = CurrentWeather.baseWeather(jsonin)[1];
             resultArray[3] = CurrentWeather.baseWeather(jsonin)[2];
+
         }
         else {
-            /*JSONObject jsonObject = new JSONObject(jsonin);
-            JSONArray jsonArrayforcast = jsonObject.getJSONArray("List");
+            /**
+             * the case of weather determinizer equals 2
+             * that means its  forcast weather
+             */
+            JSONObject jsonObject = new JSONObject(jsonin);
+            JSONArray jsonArrayforcast = jsonObject.getJSONArray("list");
             JSONObject forcastjsonObject=jsonArrayforcast.getJSONObject(day);
             String forcastjson=forcastjsonObject.toString();
             resultArray[0] =ForcastWeather.forcast(jsonin)[0];
@@ -87,7 +114,6 @@ public class Main {
             resultArray[3] = ForcastWeather.baseWeather(forcastjson)[2];
         }
         lastDisplay(resultArray);
-*/
-            System.out.println(address);}
+        }
     }
-}
+
